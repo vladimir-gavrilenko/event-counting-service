@@ -1,6 +1,5 @@
 package gva.service;
 
-import gva.TestDates;
 import gva.domain.Event;
 import gva.repository.EventRepository;
 import gva.service.config.DateTimeServiceConfiguration;
@@ -14,6 +13,7 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.context.annotation.Import;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import static gva.TestDates.*;
 import static org.junit.Assert.assertEquals;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Matchers.any;
@@ -39,11 +39,11 @@ public class EventServiceTest {
         event.setTimeStamp(dateTimeService.now());
         event.setDescription("test");
 
-        given(eventRepository.countByTimeStampIsBetween(TestDates.DEC_29_11AM, TestDates.DEC_29_NOON))
+        given(eventRepository.countByTimeStampIsBetween(DEC_29_11AM, DEC_29_NOON))
                 .willReturn(10L);
-        given(eventRepository.countByTimeStampIsBetween(TestDates.DEC_29_NOON, TestDates.DEC_29_1PM))
+        given(eventRepository.countByTimeStampIsBetween(DEC_29_NOON, DEC_29_1PM))
                 .willReturn(20L);
-        given(eventRepository.countByTimeStampIsBetween(TestDates.DEC_29_11AM, TestDates.DEC_29_1PM))
+        given(eventRepository.countByTimeStampIsBetween(DEC_29_11AM, DEC_29_1PM))
                 .willReturn(30L);
         given(eventRepository.save(any(Event.class))).willReturn(event);
     }
@@ -52,13 +52,13 @@ public class EventServiceTest {
     public void gettingEventCount() {
         long count;
 
-        count = eventService.countForPeriod(TestDates.DEC_29_11AM, TestDates.DEC_29_NOON);
+        count = eventService.countForPeriod(DEC_29_11AM, DEC_29_NOON);
         assertEquals(10L, count);
 
-        count = eventService.countForPeriod(TestDates.DEC_29_NOON, TestDates.DEC_29_1PM);
+        count = eventService.countForPeriod(DEC_29_NOON, DEC_29_1PM);
         assertEquals(20L, count);
 
-        count = eventService.countForPeriod(TestDates.DEC_29_11AM, TestDates.DEC_29_1PM);
+        count = eventService.countForPeriod(DEC_29_11AM, DEC_29_1PM);
         assertEquals(30L, count);
     }
 

@@ -11,11 +11,11 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.time.LocalDateTime;
-import java.time.Month;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static gva.TestDates.*;
 import static org.assertj.core.api.Java6Assertions.assertThat;
 
 @RunWith(SpringRunner.class)
@@ -28,13 +28,6 @@ public class EventRepositoryTest {
     private EventRepository eventRepository;
 
     private List<Event> events;
-
-    private static final LocalDateTime DEC_29_11AM =
-            LocalDateTime.of(2017, Month.DECEMBER, 29, 11, 0);
-    private static final LocalDateTime DEC_29_NOON =
-            LocalDateTime.of(2017, Month.DECEMBER, 29, 12, 0);
-    private static final LocalDateTime DEC_29_1PM =
-            LocalDateTime.of(2017, Month.DECEMBER, 29, 13, 0);
 
     @Before
     public void setUp() {
