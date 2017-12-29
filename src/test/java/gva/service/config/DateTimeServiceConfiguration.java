@@ -28,6 +28,7 @@ public class DateTimeServiceConfiguration {
 
         private TestDateTimeService(LocalDateTime now) {
             this.now = now;
+            System.out.println("test datetime service");
         }
 
         @Override

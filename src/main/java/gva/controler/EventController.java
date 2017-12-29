@@ -16,7 +16,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/events", produces = MediaType.APPLICATION_JSON_VALUE)
+@RequestMapping(value = "/events", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 @RequiredArgsConstructor
 public class EventController {
     private final EventService eventService;
@@ -37,7 +37,7 @@ public class EventController {
         return new ResponseEntity<>(eventsCountDto, HttpStatus.OK);
     }
 
-    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public ResponseEntity<Event> addEvent(@Valid @RequestBody EventDto eventDto) {
         Event event = new Event();
         event.setTimeStamp(dateTimeService.now());

@@ -1,5 +1,6 @@
 package gva.repository;
 
+import gva.TestUtils;
 import gva.domain.Event;
 import org.junit.After;
 import org.junit.Before;
@@ -15,7 +16,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static gva.TestDates.*;
+import static gva.TestUtils.*;
 import static org.assertj.core.api.Java6Assertions.assertThat;
 
 @RunWith(SpringRunner.class)
@@ -31,10 +32,7 @@ public class EventRepositoryTest {
 
     @Before
     public void setUp() {
-        events = Collections.nCopies(3, new Event());
-        events.get(0).setTimeStamp(DEC_29_11AM);
-        events.get(1).setTimeStamp(DEC_29_NOON);
-        events.get(2).setTimeStamp(DEC_29_1PM);
+        events = TestUtils.testEvents();
         events.forEach(event -> testEntityManager.persist(event));
         testEntityManager.flush();
     }
