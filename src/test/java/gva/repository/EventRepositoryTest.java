@@ -60,7 +60,7 @@ public class EventRepositoryTest {
 
     @Test
     public void findByTimeStamp() {
-        List<Event> found = eventRepository.findByTimeStampIsAfter(DEC_29_11AM);
+        List<Event> found = eventRepository.findByTimeStampIsBetween(DEC_29_NOON, DEC_29_1PM);
         List<LocalDateTime> timeStamps = found.stream().map(Event::getTimeStamp).collect(Collectors.toList());
         assertThat(timeStamps.contains(DEC_29_NOON));
         assertThat(timeStamps.contains(DEC_29_1PM));
@@ -69,10 +69,10 @@ public class EventRepositoryTest {
 
     @Test
     public void countByTimeStamp() {
-        Long count = eventRepository.countByTimeStampIsAfter(DEC_29_NOON);
+        Long count = eventRepository.countByTimeStampIsBetween(DEC_29_NOON.plusSeconds(1), DEC_29_1PM);
         assertThat(count == 1);
 
-        count = eventRepository.countByTimeStampIsAfter(DEC_29_1PM);
+        count = eventRepository.countByTimeStampIsBetween(DEC_29_1PM, DEC_29_1PM.plusSeconds(1));
         assertThat(count == 0);
     }
 }

@@ -11,7 +11,7 @@ import java.util.List;
 @Repository
 @Transactional(readOnly = true)
 public interface EventRepository extends JpaRepository<Event, Long> {
-    List<Event> findByTimeStampIsAfter(LocalDateTime ts);
+    List<Event> findByTimeStampIsBetween(LocalDateTime from, LocalDateTime to);
 
-    Long countByTimeStampIsAfter(LocalDateTime ts);
+    Long countByTimeStampIsBetween(LocalDateTime from, LocalDateTime to);
 }

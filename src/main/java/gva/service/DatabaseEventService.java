@@ -29,7 +29,7 @@ public class DatabaseEventService implements EventService {
     @Override
     public List<Event> findEventsForLast(@NonNull Duration duration) {
         LocalDateTime ts = dateTimeService.now().minus(duration);
-        return eventRepository.findByTimeStampIsAfter(ts);
+        return null;
     }
 
     @Override
