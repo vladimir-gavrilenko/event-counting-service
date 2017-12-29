@@ -12,13 +12,12 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 public class DatabaseEventService implements EventService {
-    private final DateTimeService dateTimeService;
     private final EventRepository eventRepository;
 
     @Override
     public Event add(@NonNull Event event) {
         if (event.getTimeStamp() == null) {
-            throw new IllegalArgumentException("Timestamp for the event is null: " + event);
+            throw new RuntimeException("Timestamp for the event is null: " + event);
         }
         return eventRepository.save(event);
     }

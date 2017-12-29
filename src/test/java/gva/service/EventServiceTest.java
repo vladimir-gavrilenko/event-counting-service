@@ -3,6 +3,7 @@ package gva.service;
 import gva.TestDates;
 import gva.domain.Event;
 import gva.repository.EventRepository;
+import gva.service.config.DateTimeServiceConfiguration;
 import gva.service.config.EventServiceTestConfiguration;
 import org.junit.Before;
 import org.junit.Test;
@@ -20,7 +21,7 @@ import static org.mockito.Matchers.any;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-@Import(EventServiceTestConfiguration.class)
+@Import({ EventServiceTestConfiguration.class, DateTimeServiceConfiguration.class })
 public class EventServiceTest {
     @Autowired
     private EventService eventService;
@@ -69,7 +70,7 @@ public class EventServiceTest {
         assertEquals(localEvent.getId().longValue(), 1_000_000_000L);
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test(expected = RuntimeException.class)
     public void addingInvalidEvent() {
         Event localEvent = new Event();
         localEvent.setTimeStamp(null);
