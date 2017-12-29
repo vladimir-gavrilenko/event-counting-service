@@ -1,6 +1,7 @@
 package gva.repository;
 
 import gva.domain.Event;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -26,6 +27,8 @@ public class EventRepositoryTest {
     @Autowired
     private EventRepository eventRepository;
 
+    List<Event> events;
+
     private static final LocalDateTime DEC_29_11AM =
             LocalDateTime.of(2017, Month.DECEMBER, 29, 11, 0);
     private static final LocalDateTime DEC_29_NOON =
@@ -35,11 +38,17 @@ public class EventRepositoryTest {
 
     @Before
     public void setUp() {
-        List<Event> events = Collections.nCopies(3, new Event());
+        events = Collections.nCopies(3, new Event());
         events.get(0).setTimeStamp(DEC_29_11AM);
         events.get(1).setTimeStamp(DEC_29_NOON);
         events.get(2).setTimeStamp(DEC_29_1PM);
         events.forEach(event -> testEntityManager.persist(event));
+        testEntityManager.flush();
+    }
+
+    @After
+    public void tearDown() {
+        events.forEach(event -> testEntityManager.clear());
         testEntityManager.flush();
     }
 
