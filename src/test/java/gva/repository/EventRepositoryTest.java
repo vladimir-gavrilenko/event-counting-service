@@ -48,7 +48,7 @@ public class EventRepositoryTest {
 
     @After
     public void tearDown() {
-        events.forEach(event -> testEntityManager.clear());
+        events.forEach(event -> testEntityManager.remove(event));
         testEntityManager.flush();
     }
 
