@@ -9,7 +9,7 @@ import java.util.List;
 
 @Repository
 public interface EventRepository extends JpaRepository<Event, Long> {
-    List<Event> findByTimeStampGreaterThan(LocalDateTime ts);
+    List<Event> findByTimeStampIsAfter(LocalDateTime ts);
 
-    Long countByTimeStampGreaterThan(LocalDateTime ts);
+    Long countByTimeStampIsAfter(LocalDateTime ts);
 }

@@ -12,6 +12,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import java.time.LocalDateTime;
 import java.time.Month;
+import java.time.temporal.TemporalAmount;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -27,7 +28,7 @@ public class EventRepositoryTest {
     @Autowired
     private EventRepository eventRepository;
 
-    List<Event> events;
+    private List<Event> events;
 
     private static final LocalDateTime DEC_29_11AM =
             LocalDateTime.of(2017, Month.DECEMBER, 29, 11, 0);
@@ -54,7 +55,7 @@ public class EventRepositoryTest {
 
     @Test
     public void findByTimeStamp() {
-        List<Event> found = eventRepository.findByTimeStampGreaterThan(DEC_29_11AM);
+        List<Event> found = eventRepository.findByTimeStampIsAfter(DEC_29_11AM);
         List<LocalDateTime> timeStamps = found.stream().map(Event::getTimeStamp).collect(Collectors.toList());
         assertThat(timeStamps.contains(DEC_29_NOON));
         assertThat(timeStamps.contains(DEC_29_1PM));
@@ -63,10 +64,10 @@ public class EventRepositoryTest {
 
     @Test
     public void countByTimeStamp() {
-        Long count = eventRepository.countByTimeStampGreaterThan(DEC_29_NOON);
+        Long count = eventRepository.countByTimeStampIsAfter(DEC_29_NOON);
         assertThat(count == 1);
 
-        count = eventRepository.countByTimeStampGreaterThan(DEC_29_1PM);
+        count = eventRepository.countByTimeStampIsAfter(DEC_29_1PM);
         assertThat(count == 0);
     }
 }
