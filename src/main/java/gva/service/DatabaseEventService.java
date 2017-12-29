@@ -6,7 +6,6 @@ import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -24,13 +23,11 @@ public class DatabaseEventService implements EventService {
         return eventRepository.save(event);
     }
 
-    // TODO
-    // provide startTime? Find in repo using 'between'?
     @Override
-    public List<Event> findEventsForLast(@NonNull Duration duration) {
-        LocalDateTime ts = dateTimeService.now().minus(duration);
-        return null;
+    public long countForPeriod(LocalDateTime from, LocalDateTime to) {
+        return eventRepository.countByTimeStampIsBetween(from, to);
     }
+
 
     @Override
     public List<Event> findAll() {
