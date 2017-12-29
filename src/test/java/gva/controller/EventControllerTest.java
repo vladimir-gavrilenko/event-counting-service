@@ -18,6 +18,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import static gva.TestUtils.EVENT_JSON;
 import static org.hamcrest.Matchers.*;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Matchers.any;
@@ -35,8 +36,6 @@ public class EventControllerTest {
 
     @MockBean
     private DateTimeService dateTimeService;
-
-    private static final String EVENT_JSON = "{\"description\":\"new event\"}";
 
     @Before
     public void setUp() {

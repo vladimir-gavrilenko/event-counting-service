@@ -15,6 +15,8 @@ public interface TestUtils {
     LocalDateTime DEC_29_1PM =
             LocalDateTime.of(2017, Month.DECEMBER, 29, 13, 0);
 
+    String EVENT_JSON = "{\"description\":\"new event\"}";
+
     static List<Event> testEvents() {
         List<Event> events = Collections.nCopies(3, new Event());
 
