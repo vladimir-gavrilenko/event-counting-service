@@ -27,7 +27,6 @@ public class DatabaseEventService implements EventService {
         return eventRepository.countByTimeStampIsBetween(from, to);
     }
 
-
     @Override
     public List<Event> findAll() {
         return eventRepository.findAll();
