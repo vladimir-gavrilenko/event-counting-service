@@ -14,5 +14,5 @@ public class Event {
     @GeneratedValue
     private Long id;
     private LocalDateTime timeStamp;
-    private String description; // optional
+    private String description;
 }

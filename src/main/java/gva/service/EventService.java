@@ -1,11 +1,14 @@
 package gva.service;
 
 import gva.domain.Event;
-import org.springframework.stereotype.Service;
 
+import java.time.Duration;
 import java.util.List;
 
-// @Service
 public interface EventService {
-    List<Event> findAll();
+    Event add(Event event);
+
+    List<Event> findEventsForLast(Duration duration); // TODO count, startTime
+
+    List<Event> findAll(); // for debugging
 }
