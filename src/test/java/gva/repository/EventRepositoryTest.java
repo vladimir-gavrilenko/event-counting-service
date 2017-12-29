@@ -12,7 +12,6 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import java.time.LocalDateTime;
 import java.time.Month;
-import java.time.temporal.TemporalAmount;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -51,6 +50,12 @@ public class EventRepositoryTest {
     public void tearDown() {
         events.forEach(event -> testEntityManager.clear());
         testEntityManager.flush();
+    }
+
+    @Test
+    public void findAll() {
+        List<Event> found = eventRepository.findAll();
+        assertThat(found.size() == 3);
     }
 
     @Test
