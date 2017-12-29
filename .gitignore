@@ -25,5 +25,11 @@ dist/
 nbdist/
 .nb-gradle/
 
+### Yandex Tank ###
+yandex-tank/
+!yandex-tank/ammo.txt
+!yandex-tank/load.yaml
+!yandex-tank/README.md
+
 ### Local problems ###
 /problems.txt

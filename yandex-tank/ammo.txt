@@ -1,0 +1,6 @@
+[Host: example.org]
+[Connection: close]
+[User-Agent: Tank]
+[Content-Type: application/json]
+29 /events
+{"description":"yandex-tank"}
