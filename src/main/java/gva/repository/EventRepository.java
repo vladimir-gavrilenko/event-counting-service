@@ -9,9 +9,11 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @Repository
-@Transactional(readOnly = true)
+@Transactional // readOnly = false
 public interface EventRepository extends JpaRepository<Event, Long> {
+    @Transactional(readOnly = true)
     List<Event> findByTimeStampIsBetween(LocalDateTime from, LocalDateTime to);
 
+    @Transactional(readOnly = true)
     Long countByTimeStampIsBetween(LocalDateTime from, LocalDateTime to);
 }
