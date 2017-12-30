@@ -1,10 +1,9 @@
-Pull the image: 
+Образ: 
 
 ```bash
 $ docker pull direvius/yandex-tank
 ```
-Go to `yandex-tank` directory and run the tests
-
+Запуск контейнера в интерактивном режиме:
 ```bash
 $ cd yandex-tank
 $ docker run \
@@ -16,8 +15,16 @@ $ docker run \
       direvius/yandex-tank
 ```
 
-In interactive mode run
-
+Запуск тестов (в терминале контейнера):
 ```bash
 # yandex-tank -c load.yaml ammo.txt
 ```
+
+Нагрузка задаётся функцией:
+```yaml
+    ...
+    schedule: line(1, 5000, 60)
+    ...
+```
+
+Подробнее про [Yandex.Tank](https://yandextank.readthedocs.io/en/latest/tutorial.html).
